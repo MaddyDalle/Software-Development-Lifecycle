@@ -1,7 +1,10 @@
 def calculate_pace(run):
     return run["time_min"] / run["distance_km"]
 
-run = {"date": "2026-10-31", "distance_km": 5.0, "time_min": 30.0}
+runs =[
+    {"date": "2026-10-31", "distance_km": 5.0, "time_min": 30.0},
+    {"date": "2026-10-29", "distance_km": 3.0, "time_min": 19.5},
+    {"date": "2026-10-31", "distance_km": 10.0, "time_min": 55.0}]
 
-print(run)
-print("Average pace: ", calculate_pace(run), "min/km")
+for run in runs: 
+    print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
