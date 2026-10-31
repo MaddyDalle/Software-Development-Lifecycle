@@ -1,2 +1,2 @@
 # Software-Development-Lifecycle
-Coursework for Software Development and Maintenance Life Cycle.
+A simple command-line app for logging runs and tracking progress, built step by step while learning Python OOP.
