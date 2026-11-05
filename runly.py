@@ -19,7 +19,7 @@ def show_menu():
 def add_run(runs):
     new_run = {}
     new_run["date"] = (input("Add date of your run: "))
-    new_run["distance_km"] = float(input("How far did you run (km): "))
+    new_run["distance_km"] = ask_number("How far did you run (km): ")
     new_run["time_min"] = float(input("How long did you run in minutes: "))
     runs.append(new_run)
 
@@ -28,6 +28,14 @@ def show_runs(runs):
         print ("No runs yet.")
     for run in runs: 
         print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
+
+def ask_number(question):
+    while True:
+        answer = input(question)
+        try:
+            return float(answer)
+        except ValueError:
+            print("Please enter a number!")
 
 runs =[]
 
