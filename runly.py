@@ -1,3 +1,5 @@
+import re
+
 def calculate_pace(run):
     return run["time_min"] / run["distance_km"]
 
@@ -26,10 +28,17 @@ def average_pace(runs):
 
 def add_run(runs):
     new_run = {}
-    new_run["date"] = (input("Add date of your run: "))
+    new_run["date"] = ask_date("Add date of your run (YYYY-MM-DD): ")
     new_run["distance_km"] = ask_number("How far did you run (km): ")
     new_run["time_min"] = ask_number("How long did you run in minutes: ")
     runs.append(new_run)
+
+def ask_date(question): 
+    while True: 
+        answer = input(question)
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", answer):
+            return answer
+        print("Please enter the date as YYYY-MM-DD, for example 2026-11-05")
 
 def format_pace(pace): 
     minutes = int(pace)
@@ -39,8 +48,8 @@ def format_pace(pace):
 def show_runs(runs):
     if len(runs) == 0:
         print ("No runs yet.")
-    for run in runs: 
-        print(run["date"], run["distance_km"], "km", format_pace(calculate_pace(run)), "min/km")
+    for number, run in enumerate(runs, start=1):
+        print(f"{number}. {run['date']} - {run['distance_km']} km - {format_pace(calculate_pace(run))} min/km")
 
 
 def show_menu():
