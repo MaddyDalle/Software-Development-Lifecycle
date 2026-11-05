@@ -25,3 +25,11 @@ A simple command-line version of RUNLY, a personalised running training app, bui
 ## Out of scope
 
 AI-generated plans, sports watch integration, mobile app, payments. (I am not that skilled... yet.)
+
+## Technical requirements
+
+- Tests: automated tests for calculate_pace and total_distance.
+- Automation: tests run automatically on GitHub on every push.
+- Database: runs are saved in a SQLite database so they are kept after the program closes.
+- Migrations: every change to the database structure is a numbered migration file
+  (e.g. 001_create_runs_table.sql).
