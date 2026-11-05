@@ -22,13 +22,16 @@ def add_run(runs):
     new_run["time_min"] = float(input("How long did you run in minutes: "))
     runs.append(new_run)
 
+def show_runs(runs):
+    for run in runs: 
+        print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
+
 runs =[]
 
 show_menu()
 
 add_run(runs)
 
-for run in runs: 
-    print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
+show_runs(runs)
 
 print("Total distance:", total_distance(runs), "km")
