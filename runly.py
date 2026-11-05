@@ -10,6 +10,7 @@ def total_distance(runs):
 def show_menu():
     print()
     print("=== RUNLY ===")
+    print()
     print("1) Add a run")
     print("2) Show all runs")
     print("3) Show total distance")
@@ -28,10 +29,18 @@ def show_runs(runs):
 
 runs =[]
 
-show_menu()
+while True:
+    show_menu()
+    choice = input("Choose an option (1-4): ")
 
-add_run(runs)
-
-show_runs(runs)
-
-print("Total distance:", total_distance(runs), "km")
+    if choice == "1":
+        add_run(runs)
+    elif choice == "2":
+        show_runs(runs)
+    elif choice == "3":
+        print("Total distance:", total_distance(runs), "km")
+    elif choice == "4":
+        print("Goodbye!")
+        break
+    else:
+        print("Please choose 1, 2, 3 or 4.")
