@@ -90,9 +90,17 @@ def create_profile():
             print("Please choose 1, 2 or 3.")
     return {"name": name, "goal_km": goal_km}
 
-def show_profile(profile):
+def show_profile(profile, runs):
     print("Runner:", profile["name"])
     print("Goal:", profile["goal_km"], "km")
+    longest = longest_run(runs)
+    if longest is None:
+        print("No runs yet - time to start training!")
+    elif longest["distance_km"] >= profile["goal_km"]:
+        print("Goal reached! Longest run:", longest["distance_km"], "km")
+    else:
+        remaining = profile["goal_km"] - longest["distance_km"]
+        print("Longest run:", longest["distance_km"], "km -", round(remaining, 1), "km to go")
 
 runs =[]
 
@@ -122,7 +130,7 @@ while True:
         else:
             print("Average pace:", format_pace(average), "min/km")
     elif choice == "6":
-        show_profile(profile)
+        show_profile(profile, runs)
     elif choice == "7":
         print("Goodbye!")
         break
