@@ -7,20 +7,20 @@ def total_distance(runs):
         total = total + run["distance_km"]
     return total
 
-def show_menu():
-    print()
-    print("=== RUNLY ===")
-    print()
-    print("1) Add a run")
-    print("2) Show all runs")
-    print("3) Show total distance")
-    print("4) Quit")
+def longest_run(runs):
+    if len(runs) == 0:
+        return None
+    longest = runs[0]
+    for run in runs:
+        if run["distance_km"] > longest["distance_km"]:
+            longest = run
+    return longest
 
 def add_run(runs):
     new_run = {}
     new_run["date"] = (input("Add date of your run: "))
     new_run["distance_km"] = ask_number("How far did you run (km): ")
-    new_run["time_min"] = float(input("How long did you run in minutes: "))
+    new_run["time_min"] = ask_number("How long did you run in minutes: ")
     runs.append(new_run)
 
 def show_runs(runs):
@@ -28,6 +28,17 @@ def show_runs(runs):
         print ("No runs yet.")
     for run in runs: 
         print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
+
+
+def show_menu():
+    print()
+    print("=== RUNLY ===")
+    print()
+    print("1) Add a run")
+    print("2) Show all runs")
+    print("3) Show total distance")
+    print("4) Show longest run")
+    print("5) Quit")
 
 def ask_number(question):
     while True:
@@ -46,7 +57,7 @@ runs =[]
 
 while True:
     show_menu()
-    choice = input("Choose an option (1-4): ")
+    choice = input("Choose an option (1-5): ")
 
     if choice == "1":
         add_run(runs)
@@ -55,7 +66,13 @@ while True:
     elif choice == "3":
         print("Total distance:", total_distance(runs), "km")
     elif choice == "4":
+        longest = longest_run(runs)
+        if longest is None:
+            print("No runs yet.")
+        else:
+            print("Longest run:", longest["date"], "-", longest["distance_km"], "km")
+    elif choice == "5":
         print("Goodbye!")
         break
     else:
-        print("Please choose 1, 2, 3 or 4.")
+        print("Please choose 1, 2, 3, 4 or 5.")
