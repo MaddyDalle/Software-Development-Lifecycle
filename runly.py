@@ -66,8 +66,33 @@ def ask_number(question):
             print("Please enter a number greater than 0!")
             continue
         return number
+    
+def create_profile():
+    name = input("What is your name? ")
+    while True:
+        print()
+        print("Choose your goal:")
+        print("1) 5 km")
+        print("2) 10 km")
+        print("3) Half marathon")
+        choice = input("Your goal (1-3): ")
+        if choice == "1":
+            goal_km = 5.0
+            break
+        elif choice == "2":
+            goal_km = 10.0
+            break
+        elif choice == "3":
+            goal_km = 21.1
+            break
+        else:
+            print("Please choose 1, 2 or 3.")
+    return {"name": name, "goal_km": goal_km}
 
 runs =[]
+
+profile = create_profile()
+print(f"Welcome, {profile['name']}! Your goal: {profile['goal_km']} km")
 
 while True:
     show_menu()
