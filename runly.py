@@ -52,7 +52,8 @@ def show_menu():
     print("3) Show total distance")
     print("4) Show longest run")
     print("5) Show average page")
-    print("6) Quit")
+    print("6) Show profile")
+    print("7) Quit")
 
 def ask_number(question):
     while True:
@@ -66,12 +67,49 @@ def ask_number(question):
             print("Please enter a number greater than 0!")
             continue
         return number
+    
+def create_profile():
+    name = input("What is your name? ")
+    while True:
+        print()
+        print("Choose your goal:")
+        print("1) 5 km")
+        print("2) 10 km")
+        print("3) Half marathon")
+        choice = input("Your goal (1-3): ")
+        if choice == "1":
+            goal_km = 5.0
+            break
+        elif choice == "2":
+            goal_km = 10.0
+            break
+        elif choice == "3":
+            goal_km = 21.1
+            break
+        else:
+            print("Please choose 1, 2 or 3.")
+    return {"name": name, "goal_km": goal_km}
+
+def show_profile(profile, runs):
+    print("Runner:", profile["name"])
+    print("Goal:", profile["goal_km"], "km")
+    longest = longest_run(runs)
+    if longest is None:
+        print("No runs yet - time to start training!")
+    elif longest["distance_km"] >= profile["goal_km"]:
+        print("Goal reached! Longest run:", longest["distance_km"], "km")
+    else:
+        remaining = profile["goal_km"] - longest["distance_km"]
+        print("Longest run:", longest["distance_km"], "km -", round(remaining, 1), "km to go")
 
 runs =[]
 
+profile = create_profile()
+print(f"Welcome, {profile['name']}! Your goal: {profile['goal_km']} km")
+
 while True:
     show_menu()
-    choice = input("Choose an option (1-6): ")
+    choice = input("Choose an option (1-7): ")
 
     if choice == "1":
         add_run(runs)
@@ -92,7 +130,9 @@ while True:
         else:
             print("Average pace:", format_pace(average), "min/km")
     elif choice == "6":
+        show_profile(profile, runs)
+    elif choice == "7":
         print("Goodbye!")
         break
     else:
-        print("Please choose 1, 2, 3, 4, 5 or 6.")
+        print("Please choose a number from 1 to 7.")
