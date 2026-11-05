@@ -7,12 +7,22 @@ def total_distance(runs):
         total = total + run["distance_km"]
     return total
 
+def show_menu():
+    print()
+    print("=== RUNLY ===")
+    print("1) Add a run")
+    print("2) Show all runs")
+    print("3) Show total distance")
+    print("4) Quit")
+
+show_menu()
+
 runs =[]
 
 new_run = {}
 
 new_run["date"] = (input("Add date of your run: "))
-new_run["distance_km"] = float(input("How far did you run (in km): "))
+new_run["distance_km"] = float(input("How far did you run (km): "))
 new_run["time_min"] = int(input("How fast did you run in minutes: "))
 
 runs.append(new_run)
