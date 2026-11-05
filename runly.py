@@ -16,6 +16,14 @@ def longest_run(runs):
             longest = run
     return longest
 
+def average_pace(runs): 
+    if len(runs) == 0:
+        return None
+    total_time = 0 
+    for run in runs: 
+        total_time = total_time + run["time_min"]
+    return total_time / total_distance(runs)
+
 def add_run(runs):
     new_run = {}
     new_run["date"] = (input("Add date of your run: "))
@@ -38,7 +46,8 @@ def show_menu():
     print("2) Show all runs")
     print("3) Show total distance")
     print("4) Show longest run")
-    print("5) Quit")
+    print("5) Show average page")
+    print("6) Quit")
 
 def ask_number(question):
     while True:
@@ -57,14 +66,14 @@ runs =[]
 
 while True:
     show_menu()
-    choice = input("Choose an option (1-5): ")
+    choice = input("Choose an option (1-6): ")
 
     if choice == "1":
         add_run(runs)
     elif choice == "2":
         show_runs(runs)
     elif choice == "3":
-        print("Total distance:", total_distance(runs), "km")
+        print("Total distance: ", total_distance(runs), "km")
     elif choice == "4":
         longest = longest_run(runs)
         if longest is None:
@@ -72,7 +81,13 @@ while True:
         else:
             print("Longest run:", longest["date"], "-", longest["distance_km"], "km")
     elif choice == "5":
+        average = average_pace(runs)
+        if average is None:
+            print("No runs yet.")
+        else:
+            print("Average pace:", average, "min/km")
+    elif choice == "6":
         print("Goodbye!")
         break
     else:
-        print("Please choose 1, 2, 3, 4 or 5.")
+        print("Please choose 1, 2, 3, 4, 5 or 6.")
