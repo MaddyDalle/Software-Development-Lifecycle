@@ -31,11 +31,16 @@ def add_run(runs):
     new_run["time_min"] = ask_number("How long did you run in minutes: ")
     runs.append(new_run)
 
+def format_pace(pace): 
+    minutes = int(pace)
+    seconds = round((pace - minutes) * 60)
+    return f"{minutes}:{seconds:02d}"
+
 def show_runs(runs):
     if len(runs) == 0:
         print ("No runs yet.")
     for run in runs: 
-        print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
+        print(run["date"], run["distance_km"], "km", format_pace(calculate_pace(run)), "min/km")
 
 
 def show_menu():
@@ -85,7 +90,7 @@ while True:
         if average is None:
             print("No runs yet.")
         else:
-            print("Average pace:", average, "min/km")
+            print("Average pace:", format_pace(average), "min/km")
     elif choice == "6":
         print("Goodbye!")
         break
