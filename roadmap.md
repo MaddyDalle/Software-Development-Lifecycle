@@ -6,9 +6,9 @@
 - Checking that inputs are valid
 - Longest run and average pace
 - Pace shown as min:sec
+- Add Runner profile -> name and goal (5 km, 10 km or half marathon). 
 
 ## Next
-- Add Runner profile -> name and goal (5 km, 10 km or half marathon). 
 - Tests (for course requirement) -> at least 3 tests. 
 - Run the tests automatically on GitHub.
 - Save runs in a database (with migrations, again course requirement). 
