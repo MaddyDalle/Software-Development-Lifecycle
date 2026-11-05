@@ -15,17 +15,18 @@ def show_menu():
     print("3) Show total distance")
     print("4) Quit")
 
-show_menu()
+def add_run(runs):
+    new_run = {}
+    new_run["date"] = (input("Add date of your run: "))
+    new_run["distance_km"] = float(input("How far did you run (km): "))
+    new_run["time_min"] = float(input("How long did you run in minutes: "))
+    runs.append(new_run)
 
 runs =[]
 
-new_run = {}
+show_menu()
 
-new_run["date"] = (input("Add date of your run: "))
-new_run["distance_km"] = float(input("How far did you run (km): "))
-new_run["time_min"] = int(input("How fast did you run in minutes: "))
-
-runs.append(new_run)
+add_run(runs)
 
 for run in runs: 
     print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
