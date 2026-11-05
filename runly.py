@@ -24,6 +24,8 @@ def add_run(runs):
     runs.append(new_run)
 
 def show_runs(runs):
+    if len(runs) == 0:
+        print ("No runs yet.")
     for run in runs: 
         print(run["date"], run["distance_km"], "km", calculate_pace(run), "min/km")
 
