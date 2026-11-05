@@ -33,9 +33,14 @@ def ask_number(question):
     while True:
         answer = input(question)
         try:
-            return float(answer)
+            number = float(answer)
         except ValueError:
             print("Please enter a number!")
+            continue
+        if number <= 0:
+            print("Please enter a number greater than 0!")
+            continue
+        return number
 
 runs =[]
 
