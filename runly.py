@@ -48,8 +48,8 @@ def format_pace(pace):
 def show_runs(runs):
     if len(runs) == 0:
         print ("No runs yet.")
-    for run in runs: 
-        print(run["date"], run["distance_km"], "km", format_pace(calculate_pace(run)), "min/km")
+    for number, run in enumerate(runs, start=1):
+        print(f"{number}. {run['date']} - {run['distance_km']} km - {format_pace(calculate_pace(run))} min/km")
 
 
 def show_menu():
